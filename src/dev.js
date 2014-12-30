@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-if(!('endsWith') in String.prototype){
+if(!('endsWith' in String.prototype)){
   String.prototype.endsWith = function(suffix) {
     return this.indexOf(suffix, this.length - suffix.length) !== -1;
   };
