@@ -1,0 +1,20 @@
+{
+  "name": "aurelia-tools",
+  "version": "0.1.0",
+  "description": "Tools and utility functions used to build and develop Aurelia's libraries.",
+  "keywords": [
+    "aurelia",
+    "tools"
+  ],
+  "homepage": "http://aurelia.io",
+  "bugs": {
+    "url": "https://github.com/aurelia/tools/issues"
+  },
+  "license": "MIT",
+  "author": "Rob Eisenberg <rob@bluespire.com> (http://robeisenberg.com/)",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aurelia/tools"
+  }
+}
