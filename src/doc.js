@@ -32,6 +32,10 @@ module.exports = {
 
       if(item.class){
         var owner = api.classes[item.class];
+        owner.methods = owner.methods || [];
+        owner.properties = owner.properties || [];
+        owner.events = owner.events || [];
+
         delete item.class;
         delete item.file;
         categorizeMember(item, owner.methods, owner.properties, owner.events);
@@ -43,6 +47,9 @@ module.exports = {
 
     for(var name in api.classes){
       var value = api.classes[name];
+      if(!value.file){
+        continue;
+      }
 
       delete value.shortname;
       delete value.plugins;
