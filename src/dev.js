@@ -52,8 +52,8 @@ module.exports = {
       .filter(function(name){ return name.endsWith('.js'); })
       .map(function(name) { 
         return [
-          '../' + name.substring(0, name.indexOf('@')) + '/dist/amd',
-          dependencyPath + '/' + name.substring(0, name.indexOf('.js')) + '/amd'
+          '../' + name.substring(0, name.indexOf('@')) + '/dist/system',
+          dependencyPath + '/' + name.substring(0, name.indexOf('.js')) + '/system'
         ]; 
       }).forEach(function(value){
         copyDir(value[0], value[1]);
