@@ -21,7 +21,8 @@ module.exports = {
           events.push(item);
           break;
         default:
-          throw new Error('Item type ' + item.itemtype + ' is not supported.');
+          console.warn('API DOC Item Type "' + item.itemtype + '" is not supported.');
+          break;
       }
 
       delete item.itemtype;
