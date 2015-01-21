@@ -32,14 +32,20 @@ module.exports = {
       delete item.module;
 
       if(item.class){
-        var owner = api.classes[item.class];
-        owner.methods = owner.methods || [];
-        owner.properties = owner.properties || [];
-        owner.events = owner.events || [];
+        if(item.class === 'export'){
+          delete item.class;
+          item.file = item.file.substring(item.file.indexOf('aurelia'));
+          categorizeMember(item, methods, properties, events);
+        }else{
+          var owner = api.classes[item.class];
+          owner.methods = owner.methods || [];
+          owner.properties = owner.properties || [];
+          owner.events = owner.events || [];
 
-        delete item.class;
-        delete item.file;
-        categorizeMember(item, owner.methods, owner.properties, owner.events);
+          delete item.class;
+          delete item.file;
+          categorizeMember(item, owner.methods, owner.properties, owner.events);
+        }
       }else{
         item.file = item.file.substring(item.file.indexOf('aurelia'));
         categorizeMember(item, methods, properties, events);
