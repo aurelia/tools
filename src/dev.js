@@ -58,5 +58,26 @@ module.exports = {
       }).forEach(function(value){
         copyDir(value[0], value[1]);
       });
+  },
+  buildDevEnv: function () {
+    var dependencyPath = 'jspm_packages/github/aurelia';
+    var gitPath = 'http://github.com/aurelia/';
+    var exec = require('child_process').exec;
+
+    fs.readdirSync(dependencyPath)
+      .filter(function(name){ return name.endsWith('.js'); })
+      .map(function(name) { 
+        return [
+          '../' + name.substring(0, name.indexOf('@')),
+          gitPath + name.substring(0, name.indexOf('@')) + '.git'
+        ];
+      }).forEach(function(value){
+        mkdir(value[0]);
+        exec("git clone " + value[1] + " " + value[0]);
+        exec("gulp build");
+      });
+
+    var sys = require('sys');
+    function puts(error, stdout, stderr) { sys.puts(stdout) }
   }
 };
