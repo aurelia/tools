@@ -74,7 +74,8 @@ module.exports = {
       }).forEach(function(value){
         mkdir(value[0]);
         exec("git clone " + value[1] + " " + value[0]);
-        exec("gulp build");
+        exec("(cd " + value[0] + " && exec npm install)");
+        exec("(cd " + value[0] + " && exec gulp build)");
       });
 
     var sys = require('sys');

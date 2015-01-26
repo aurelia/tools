@@ -4,5 +4,5 @@ var dev = require('./dev');
 module.exports = {
   transformAPIModel:doc.transformAPIModel,
   updateOwnDependenciesFromLocalRepositories:dev.updateOwnDependenciesFromLocalRepositories,
-  buildDevEnv:buildDevEnv
+  buildDevEnv:dev.buildDevEnv
 };
