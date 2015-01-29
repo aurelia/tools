@@ -56,7 +56,9 @@ module.exports = {
           dependencyPath + '/' + name.substring(0, name.indexOf('.js')) + '/system'
         ]; 
       }).forEach(function(value){
-        copyDir(value[0], value[1]);
+        if (fs.existsSync(value[0])) {
+          copyDir(value[0], value[1]);
+        }
       });
   },
   buildDevEnv: function () {
