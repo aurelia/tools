@@ -15,9 +15,9 @@ Change to the new directory
 
 Clone this repository into the `tools` directory.  This contains the helper tools for creating the dev environment.
 
-`git clone https://github.com/PWKad/tools.git`
+`git clone https://github.com/aurelia/tools.git`
 
-Clone the skeleton-navigation also which is the base app for testing - 
+Clone the skeleton-navigation also which is the base app for testing -
 
 `git clone https://github.com/aurelia/skeleton-navigation.git`
 
