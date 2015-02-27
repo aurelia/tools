@@ -43,3 +43,23 @@ Tools and utility functions used to build and develop Aurelia's libraries.
   ```
 
 Now you have the ability to update the repos locally, make changes, and use those in the skeleton app in the `aurelia` directory by using the `gulp update-own-deps` command.
+
+## Aurelia Context Chrome extension instructions
+
+The Aurelia Context Chrome extension is a Chrome extension that lives in the side bar of the elements tab that highlights the current context of the selected element in the DOM.  It works by looking for the view model / context that is currently providing data-binding to the node.  It is in an early beta state and therefore needs to be installed manually instead of through the Chrome Web Store until it is ready for full release.
+
+*Please feel free to open issues in the aurelia/tools repo with possible issues and / or contribute to it's development after signing the CLA*
+
+**Installation**
+
+1. Open your Chrome browser and enter `chrome://extensions` into the URL bar
+
+2. Check the `Developer mode` box to allow adding extensions that aren't from Chrome store
+
+3. Click 'Load Unpacked Extension'
+
+4. Goto the `aurelia/tools/context-debugger` folder and open it
+
+5. The extension should be loaded into your browser.
+
+Right-click on an element and choose `Inspect Element` which should open the Chrome debugging tools.  On the right side pane you should now see an option for `Aurelia Properties` that shows what is currently available.
