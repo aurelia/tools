@@ -37,7 +37,7 @@ var copyDir = function(src, dest) {
     console.log(error);
   }
 };
- 
+
 var copy = function(src, dest) {
   var oldFile = fs.createReadStream(src);
   var newFile = fs.createWriteStream(dest);
@@ -50,11 +50,11 @@ module.exports = {
 
     fs.readdirSync(dependencyPath)
       .filter(function(name){ return name.endsWith('.js'); })
-      .map(function(name) { 
+      .map(function(name) {
         return [
           '../' + name.substring(0, name.indexOf('@')) + '/dist/system',
-          dependencyPath + '/' + name.substring(0, name.indexOf('.js')) + '/system'
-        ]; 
+          dependencyPath + '/' + name.substring(0, name.indexOf('.js'))
+        ];
       }).forEach(function(value){
         if (fs.existsSync(value[0])) {
           copyDir(value[0], value[1]);
@@ -68,7 +68,7 @@ module.exports = {
 
     fs.readdirSync(dependencyPath)
       .filter(function(name){ return name.endsWith('.js'); })
-      .map(function(name) { 
+      .map(function(name) {
         return [
           '../' + name.substring(0, name.indexOf('@')),
           gitPath + name.substring(0, name.indexOf('@')) + '.git'
