@@ -52,7 +52,7 @@ module.exports = {
       .filter(function(name){ return name.endsWith('.js'); })
       .map(function(name) {
         return [
-          '../' + name.substring(0, name.indexOf('@')) + '/dist/system',
+          '../' + name.substring(0, name.indexOf('@')) + '/dist/amd',
           dependencyPath + '/' + name.substring(0, name.indexOf('.js'))
         ];
       }).forEach(function(value){
