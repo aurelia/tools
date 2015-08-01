@@ -7,5 +7,6 @@ module.exports = {
   updateOwnDependenciesFromLocalRepositories:dev.updateOwnDependenciesFromLocalRepositories,
   buildDevEnv:dev.buildDevEnv,
   extractImports:build.extractImports,
-  createImportBlock:build.createImportBlock
+  createImportBlock:build.createImportBlock,
+  sortFiles:build.sortFiles
 };

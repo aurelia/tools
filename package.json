@@ -16,5 +16,9 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/aurelia/tools"
+  },
+  "dependencies": {
+    "breeze-dag": "^0.1.0",
+    "through2": "^2.0.0"
   }
 }
