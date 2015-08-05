@@ -3,7 +3,7 @@ var dag = require('breeze-dag');
 var through2 = require('through2');
 
 var relativeImports = /import\s*{[a-zA-Z\,\s]+}\s*from\s*'(\.[^\s']+)';\s*/g;
-var nonRelativeImports = /import\s*{?[a-zA-Z\*\,\s]+}?\s*from\s*'[a-zA-Z\-]+';\s*/g;
+var nonRelativeImports = /import(\s*{?[a-zA-Z\*\,\s]+}?)?(\s*as\s*[a-zA-Z0-9]+)?(\s*from)?\s*'[a-zA-Z\-]+';\s*/g;
 var importGrouper = /import\s*{([a-zA-Z\,\s]+)}\s*from\s*'([a-zA-Z\-]+)'\s*;\s*/;
 
 exports.sortFiles = function sortFiles() {
