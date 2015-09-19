@@ -76,8 +76,14 @@ module.exports = {
       }).forEach(function(value){
         mkdir(value[0]);
         exec("git clone " + value[1] + " " + value[0]);
-        exec("(cd " + value[0] + " && exec npm install)");
-        exec("(cd " + value[0] + " && exec gulp build)");
+
+        var normalizedPath = path.normalize(value[0]);
+        exec("npm install", {
+          cwd: normalizedPath
+        });
+         exec("gulp build", {
+          cwd: normalizedPath
+        });
       });
 
     var sys = require('sys');
