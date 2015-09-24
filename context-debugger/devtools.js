@@ -12,7 +12,7 @@ var page_getProperties = function() {
         if (node.classList) {
           var validAureliaTarget = node.classList.contains('au-target');
           if (validAureliaTarget && node.primaryBehavior){
-            var target = node.primaryBehavior.executionContext;
+            var target = node.primaryBehavior.bindingContext;
             for(var property in target.__observers__) {
               var propertyName = target.__observers__[property].propertyName;
               var currentValue = target.__observers__[property].currentValue;
