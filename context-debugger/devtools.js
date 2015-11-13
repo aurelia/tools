@@ -9,21 +9,17 @@ var page_getProperties = function() {
     if (parent && parent.childNodes.length > 0){
       NodeList.prototype.forEach = Array.prototype.forEach
       parent.childNodes.forEach(function (node){
-        if (node.classList) {
-          var validAureliaTarget = node.classList.contains('au-target');
-          if (validAureliaTarget && node.primaryBehavior){
-            var target = node.primaryBehavior.bindingContext;
-            for(var property in target.__observers__) {
-              var propertyName = target.__observers__[property].propertyName;
-              var currentValue = target.__observers__[property].currentValue;
-              var getType = {};
-              var isFunction = (property && getType.toString.call(property) === '[object Function]');
-              if (!isFunction) {
-                props.push({'name': propertyName, 'value': currentValue});
-              }
+        if (node.au && node.au.controller){
+          var target = node.au.controller.viewModel;
+          for(var property in target.__observers__) {
+            var propertyName = target.__observers__[property].propertyName;
+            var currentValue = target.__observers__[property].currentValue;
+            var getType = {};
+            var isFunction = (property && getType.toString.call(property) === '[object Function]');
+            if (!isFunction) {
+              props.push({'name': propertyName, 'value': currentValue});
             }
           }
-          // TODO: Go up the chain and continue looking instead of just the direct parent
         }
       });
     }
