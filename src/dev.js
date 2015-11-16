@@ -46,13 +46,13 @@ var copy = function(src, dest) {
 
 module.exports = {
   updateOwnDependenciesFromLocalRepositories:function(){
-    var dependencyPath = 'jspm_packages/github/aurelia';
+    var dependencyPath = 'jspm_packages/npm';
 
     fs.readdirSync(dependencyPath)
-      .filter(function(name){ return name.endsWith('.js'); })
+      .filter(function(name){ return name.startsWith('aurelia-') && name.endsWith('.js'); })
       .map(function(name) {
         return [
-          '../' + name.substring(0, name.indexOf('@')) + '/dist/amd',
+          '../' + name.substring(0, name.indexOf('@')).replace('aurelia-', '') + '/dist/amd',
           dependencyPath + '/' + name.substring(0, name.indexOf('.js'))
         ];
       }).forEach(function(value){
@@ -62,16 +62,16 @@ module.exports = {
       });
   },
   buildDevEnv: function () {
-    var dependencyPath = 'jspm_packages/github/aurelia';
+    var dependencyPath = 'jspm_packages/npm';
     var gitPath = 'http://github.com/aurelia/';
     var exec = require('child_process').exec;
 
     fs.readdirSync(dependencyPath)
-      .filter(function(name){ return name.endsWith('.js'); })
+      .filter(function(name){ return name.startsWith('aurelia-'); })
       .map(function(name) {
         return [
-          '../' + name.substring(0, name.indexOf('@')),
-          gitPath + name.substring(0, name.indexOf('@')) + '.git'
+          '../' + name.substring(0, name.indexOf('@')).replace('aurelia-', ''),
+          gitPath + name.substring(0, name.indexOf('@')).replace('aurelia-', '') + '.git'
         ];
       }).forEach(function(value){
         mkdir(value[0]);
