@@ -46,7 +46,7 @@ var copy = function(src, dest) {
 
 module.exports = {
   updateOwnDependenciesFromLocalRepositories:function(){
-    var dependencyPath = 'jspm_packages/github/aurelia';
+    var dependencyPath = 'jspm_packages/npm';
 
     fs.readdirSync(dependencyPath)
       .filter(function(name){ return name.endsWith('.js'); })
@@ -62,20 +62,17 @@ module.exports = {
       });
   },
   buildDevEnv: function () {
-    var dependencyPath = 'jspm_packages/github/aurelia';
-    var gitPath = 'http://github.com/aurelia/';
+    var dependencyPath = 'jspm_packages/npm';
     var exec = require('child_process').exec;
 
     fs.readdirSync(dependencyPath)
       .filter(function(name){ return name.endsWith('.js'); })
       .map(function(name) {
         return [
-          '../' + name.substring(0, name.indexOf('@')),
-          gitPath + name.substring(0, name.indexOf('@')) + '.git'
+          '../' + name.substring(0, name.indexOf('@'))
         ];
       }).forEach(function(value){
         mkdir(value[0]);
-        exec("git clone " + value[1] + " " + value[0]);
 
         var normalizedPath = path.normalize(value[0]);
         exec("npm install", {
