@@ -1,5 +1,8 @@
 var fs = require('fs');
 var path = require('path');
+var exec = require('child_process').exec;
+var gitPath = 'http://github.com/aurelia/';
+var dependencyPath = 'jspm_packages/npm';
 
 if(!('endsWith' in String.prototype)){
   String.prototype.endsWith = function(suffix) {
@@ -44,10 +47,24 @@ var copy = function(src, dest) {
   oldFile.pipe(newFile);
 };
 
+var findAureliaDirectories = function(name) {
+  return name.startsWith('aurelia-');
+};
+
+var mapAureliaDirectories = function(name) {
+  return [
+    '../' + name.substring(0, name.indexOf('@')).replace('aurelia-', ''),
+    gitPath + name.substring(0, name.indexOf('@')).replace('aurelia-', '') + '.git'
+  ];
+};
+
+var pullDevEnv = function(value) {
+  mkdir(value[0]);
+  exec("git clone " + value[1] + " " + value[0]);
+};
+
 module.exports = {
   updateOwnDependenciesFromLocalRepositories:function(){
-    var dependencyPath = 'jspm_packages/npm';
-
     fs.readdirSync(dependencyPath)
       .filter(function(name){ return name.startsWith('aurelia-') && name.endsWith('.js'); })
       .map(function(name) {
@@ -62,20 +79,11 @@ module.exports = {
       });
   },
   buildDevEnv: function () {
-    var dependencyPath = 'jspm_packages/npm';
-    var gitPath = 'http://github.com/aurelia/';
-    var exec = require('child_process').exec;
-
     fs.readdirSync(dependencyPath)
-      .filter(function(name){ return name.startsWith('aurelia-'); })
-      .map(function(name) {
-        return [
-          '../' + name.substring(0, name.indexOf('@')).replace('aurelia-', ''),
-          gitPath + name.substring(0, name.indexOf('@')).replace('aurelia-', '') + '.git'
-        ];
-      }).forEach(function(value){
-        mkdir(value[0]);
-        exec("git clone " + value[1] + " " + value[0]);
+      .filter(findAureliaDirectories)
+      .map(mapAureliaDirectories)
+      .forEach(function (value) {
+        pullDevEnv(value);
 
         var normalizedPath = path.normalize(value[0]);
         exec("npm install", {
@@ -87,6 +95,17 @@ module.exports = {
       });
 
     var sys = require('sys');
+
+    function puts(error, stdout, stderr) { sys.puts(stdout) }
+  },
+  pullDevEnv: function () {
+    fs.readdirSync(dependencyPath)
+      .filter(findAureliaDirectories)
+      .map(mapAureliaDirectories)
+      .forEach(pullDevEnv);
+
+    var sys = require('sys');
+
     function puts(error, stdout, stderr) { sys.puts(stdout) }
   }
 };
