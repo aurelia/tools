@@ -64,12 +64,19 @@ var pullDevEnv = function(value) {
 };
 
 module.exports = {
-  updateOwnDependenciesFromLocalRepositories:function(){
+  updateOwnDependenciesFromLocalRepositories:function(depth){
+    depth = (depth || 0) + 1;
+    var levels  = '';
+
+    for (var i = 0; i < depth; ++i) {
+      levels += '../';
+    }
+
     fs.readdirSync(dependencyPath)
       .filter(function(name){ return name.startsWith('aurelia-') && name.endsWith('.js'); })
       .map(function(name) {
         return [
-          '../' + name.substring(0, name.indexOf('@')).replace('aurelia-', '') + '/dist/amd',
+          levels + name.substring(0, name.indexOf('@')).replace('aurelia-', '') + '/dist/amd',
           dependencyPath + '/' + name.substring(0, name.indexOf('.js'))
         ];
       }).forEach(function(value){
