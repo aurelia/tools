@@ -20,5 +20,8 @@
   "dependencies": {
     "breeze-dag": "^0.1.0",
     "through2": "^2.0.0"
+  },
+  "scripts": {
+    "postinstall": "node ./scripts/eslintrc_selector.js"
   }
 }
