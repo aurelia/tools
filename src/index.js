@@ -9,5 +9,6 @@ module.exports = {
   pullDevEnv:dev.pullDevEnv,
   extractImports:build.extractImports,
   createImportBlock:build.createImportBlock,
-  sortFiles:build.sortFiles
+  sortFiles:build.sortFiles,
+  cleanGeneratedCode: build.cleanGeneratedCode
 };
