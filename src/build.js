@@ -94,7 +94,7 @@ exports.createImportBlock = function(importsToAdd){
   return importBlock + '\n';
 };
 
-exports.cleanGeneratedCode(code) {
+exports.cleanGeneratedCode = function(code) {
   var classCallCheckMethodMatcher = /function\s+_classCallCheck\(instance,\s+Constructor\)\s+\{\s+if\s+\(!\(instance\s+instanceof\s+Constructor\)\)\s+\{\s+throw\s+new\s+TypeError\("Cannot\s+call\s+a\s+class\s+as\s+a\s+function"\)\;\s+}\s+}/g;
   var classCallCheckInvocationMatcher = /_classCallCheck\(this,\s[a-zA-z]+\);/g
 
