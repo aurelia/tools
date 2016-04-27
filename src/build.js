@@ -15,7 +15,7 @@ exports.sortFiles = function sortFiles() {
     var deps = [];
     var match;
     while (match = relativeImports.exec(contents)) {
-      deps.push(path.relative(file.base, path.resolve(file.base, match[1] + '.js')));
+      deps.push(path.relative(file.base, path.resolve(path.dirname(file.path), match[1] + '.js')));
     }
 
     return deps;
