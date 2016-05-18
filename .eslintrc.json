@@ -104,7 +104,7 @@
     "no-param-reassign": 0,          // http://eslint.org/docs/rules/no-param-reassign
     "no-proto": 2,                   // http://eslint.org/docs/rules/no-proto
     "no-redeclare": 2,               // http://eslint.org/docs/rules/no-redeclare
-    "no-return-assign": 2,           // http://eslint.org/docs/rules/no-return-assign
+    // "no-return-assign": 2,           // http://eslint.org/docs/rules/no-return-assign
     "no-script-url": 2,              // http://eslint.org/docs/rules/no-script-url
     "no-self-compare": 2,            // http://eslint.org/docs/rules/no-self-compare
     "no-sequences": 2,               // http://eslint.org/docs/rules/no-sequences
@@ -159,7 +159,10 @@
       "before": false,
       "after": true
     }],
-    "keyword-spacing": [2, {"before": true, "after": true}], //http://eslint.org/docs/rules/keyword-spacing
+    "keyword-spacing": [2, {         // http://eslint.org/docs/rules/keyword-spacing
+      "before": true,
+      "after": true
+    }],
     "space-before-blocks": 2,        // http://eslint.org/docs/rules/space-before-blocks
     "space-before-function-paren": [2, "never"], // http://eslint.org/docs/rules/space-before-function-paren
     "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops
