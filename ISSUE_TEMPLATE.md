@@ -19,7 +19,7 @@ Choose one of the two headings, delete the other.
 **I'm submitting a bug report**
 **I'm submitting a feature request**
 
-* **API Version:**
+* **Library Version:**
 major.minor.patch-pre
 
 
