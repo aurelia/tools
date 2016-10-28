@@ -1,6 +1,6 @@
 {
   "name": "aurelia-tools",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "Tools and utility functions used to build and develop Aurelia's libraries.",
   "keywords": [
     "aurelia",
