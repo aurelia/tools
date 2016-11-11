@@ -16,7 +16,7 @@
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "noEmitHelpers": true
+    "noEmitHelpers": false
   },
   "exclude": [
     ".vscode",
