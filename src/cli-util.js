@@ -4,15 +4,15 @@ module.exports = {
       outputPrefix = '[' + outputPrefix + '] ';
     }
     spawned.stdout.on( 'data', data => {
-      const text = data.toString();
+      const text = data.toString().trim();
       if (text)
-        console.log( outputPrefix + data.toString() );
+        console.log( outputPrefix || '' + text );
     });
 
     spawned.stderr.on( 'data', data => {
-      const text = data.toString();
+      const text = data.toString().trim();
       if (text)
-        console.error( outputPrefix + data.toString() );
+        console.error( outputPrefix || '' + text );
     });
 
     spawned.on( 'close', code => {
