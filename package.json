@@ -17,8 +17,17 @@
     "type": "git",
     "url": "http://github.com/aurelia/tools"
   },
+  "bin": {
+    "aurelia-tools": "src/index.js"
+  },
   "dependencies": {
     "breeze-dag": "^0.1.0",
-    "through2": "^2.0.0"
+    "standard-version": "^3.0.0",
+    "through2": "^2.0.0",
+    "yargs": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.46",
+    "@types/yargs": "^6.3.1"
   }
 }
