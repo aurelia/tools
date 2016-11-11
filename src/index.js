@@ -103,7 +103,7 @@ const argv = require('yargs')
       const packageName = require(packageJsonPath).name;
       rimraf('dist/doc-temp/**');
       const tsc = spawn( './node_modules/.bin/tsc', [ '--project', argv.project, '--outFile', path.join(argv.outDir, packageName + '.js') ] );
-      proxySpawned(tsc);
+      proxySpawned(tsc, undefined, argv.continueWhenFailed);
     } catch (e) {
       console.error(e.message);
       process.exit(1);
@@ -127,6 +127,11 @@ const argv = require('yargs')
       describe: 'removes the outdir',
       type: 'boolean',
       default: true
+    },
+    'continue-when-failed': {
+      describe: 'Do not bail when one compilation fails',
+      type: 'boolean',
+      default: false
     }
   }, function(argv) {
     const projectDir = process.cwd();
