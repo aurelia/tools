@@ -6,17 +6,17 @@ const fs = require('fs');
 module.exports = {
   shapeDefs: function shapeDefs(directory, targetDir) {
     if (!directory) {
-      directory = process.cwd()
+      directory = process.cwd();
     }
     if (!targetDir) {
-      targetDir = 'dist/doc-temp'
+      targetDir = 'dist/doc-temp';
     }
     if (!path.isAbsolute(targetDir)) {
-      targetDir = path.resolve(directory, targetDir)
+      targetDir = path.resolve(directory, targetDir);
     }
 
     const packageJsonPath = path.resolve(directory, 'package.json');
-    let packageName
+    let packageName;
     try {
       packageName = require(packageJsonPath).name;
     } catch (e) {

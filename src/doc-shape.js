@@ -6,13 +6,13 @@ const fs = require('fs');
 module.exports = {
   shape: function shape(apiJsonPath, directory) {
     if (!directory) {
-      directory = process.cwd()
+      directory = process.cwd();
     }
     if (!apiJsonPath) {
-      apiJsonPath = 'api.json'
+      apiJsonPath = 'doc/api.json';
     }
     if (!path.isAbsolute(apiJsonPath)) {
-      apiJsonPath = path.resolve(directory, apiJsonPath)
+      apiJsonPath = path.resolve(directory, apiJsonPath);
     }
     const packageJsonPath = path.resolve(directory, 'package.json');
 
