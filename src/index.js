@@ -137,7 +137,7 @@ const argv = require('yargs')
       alias: 'p',
       describe: 'TypeScript project file',
       type: 'string',
-      default: path.resolve(__dirname, 'tsc/tsconfig.json')
+      default: path.resolve(__dirname, '../tsc/tsconfig.json')
     }
   }, function(argv) {
     const projectDir = process.cwd();
