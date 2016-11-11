@@ -90,6 +90,11 @@ const argv = require('yargs')
         describe: 'Output for compilation',
         type: 'string',
         default: 'dist/doc-temp'
+      },
+      'continue-when-failed': {
+        describe: 'Do not bail when one compilation fails',
+        type: 'boolean',
+        default: false
       }
     }, function(argv) {
     const projectDir = process.cwd();
@@ -133,7 +138,7 @@ const argv = require('yargs')
       
       const spawn = require( 'child_process' ).spawn;
       const typedoc = spawn( 'node', [ typeDocPath, '--json', argv.outFile, '--excludeExternals', '--includeDeclarations', '--mode', 'modules', '--target', 'ES6', '--name', packageName, '--ignoreCompilerErrors', '--tsconfig', 'tsconfig.base.json', argv.inDir ] );
-      proxySpawned(typedoc, undefined, function(code) {
+      proxySpawned(typedoc, undefined, argv.continueWhenFailed, function(code) {
         if (code === 0) {
           if (argv.cleanUpInDir) {
             rimraf(argv.inDir);
