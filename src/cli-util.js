@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
   proxySpawned: function proxySpawned(spawned, outputPrefix, continueWhenFailed, onDone) {
     if (outputPrefix) {
       outputPrefix = '[' + outputPrefix + '] ';
