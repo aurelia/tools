@@ -132,6 +132,12 @@ const argv = require('yargs')
       describe: 'Do not bail when one compilation fails',
       type: 'boolean',
       default: false
+    },
+    project: {
+      alias: 'p',
+      describe: 'TypeScript project file',
+      type: 'string',
+      default: path.resolve(__dirname, 'tsc/tsconfig.json')
     }
   }, function(argv) {
     const projectDir = process.cwd();
@@ -142,7 +148,7 @@ const argv = require('yargs')
       rimraf('doc/api.json');
       
       const spawn = require( 'child_process' ).spawn;
-      const typedoc = spawn( 'node', [ typeDocPath, '--json', argv.outFile, '--excludeExternals', '--includeDeclarations', '--mode', 'modules', '--target', 'ES6', '--name', packageName, '--ignoreCompilerErrors', '--tsconfig', 'tsconfig.base.json', argv.inDir ] );
+      const typedoc = spawn( 'node', [ typeDocPath, '--json', argv.outFile, '--excludeExternals', '--includeDeclarations', '--mode', 'modules', '--target', 'ES6', '--name', packageName, '--ignoreCompilerErrors', '--tsconfig', argv.project, argv.inDir ] );
       proxySpawned(typedoc, undefined, argv.continueWhenFailed, function(code) {
         if (code === 0) {
           if (argv.cleanUpInDir) {
