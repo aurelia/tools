@@ -9,8 +9,14 @@ const docShapeDefs = require('./doc-shape-defs');
 const path = require('path');
 const rimraf = require('rimraf').sync;
 const spawn = require('child_process').spawn;
-const tscPath = require.resolve('typescript/bin/tsc');
 const proxySpawned = require('./cli-util').proxySpawned;
+const projectDir = process.cwd();
+let tscPath;
+try {
+  tscPath = require.resolve(path.join(projectDir, 'node_modules', 'typescript/bin/tsc'));
+} catch (_) {
+  tscPath = require.resolve('typescript/bin/tsc');
+}
 
 module.exports = {
   transformAPIModel:doc.transformAPIModel,
@@ -48,6 +54,10 @@ const argv = require('yargs')
         describe: 'Clean outdir before compiling',
         type: 'boolean',
         default: false
+      },
+      'variation': {
+        describe: 'Which variation to compile (or all if not defined)',
+        type: 'array'
       }
     },
     function(argv) {
@@ -55,21 +65,32 @@ const argv = require('yargs')
         rimraf(argv.outDir);
       }
 
-      const variations = [
+      let variations = [
         { module: "amd" },
         { module: "commonjs" },
         { module: "es2015", directory: "native-modules" },
         { module: "system" },
-        { module: "es2015", target: "es2015" }
+        { module: "es2015", target: "es2015" },
+        { module: "es2015", target: "es2017" }
       ];
 
+      if (argv.variation && argv.variation.length) {
+        variations = variations.filter(v => 
+          (v.target && argv.variation.includes(v.target)) || 
+          (v.directory && argv.variation.includes(v.directory)) || 
+          argv.variation.includes(v.module)
+        )
+      }
+
       variations.forEach(variation => {
-        const args = [ tscPath, '--project', argv.project, '--outDir', path.join(argv.outDir, variation.directory || variation.module), '--module', variation.module ];
+        const outDir = variation.directory || variation.target || variation.module
+        const args = [ tscPath, '--project', argv.project, '--outDir', path.join(argv.outDir, outDir), '--module', variation.module ];
         if (variation.target) {
           args.push('--target', variation.target);
         }
+        console.log(`Running TypeScript compiler: ${args.join(' ')}`)
         const tsc = spawn('node', args);
-        proxySpawned(tsc, variation.directory || variation.module, argv.continueWhenFailed);
+        proxySpawned(tsc, outDir, argv.continueWhenFailed);
       });
     })
   .command('doc-jsonshape', 'Shape docs', {}, function(argv) {
@@ -97,7 +118,6 @@ const argv = require('yargs')
         default: false
       }
     }, function(argv) {
-    const projectDir = process.cwd();
     const packageJsonPath = path.resolve(projectDir, 'package.json');
     try {
       const packageName = require(packageJsonPath).name;
@@ -169,7 +189,6 @@ const argv = require('yargs')
       default: false
     }
   }, function(argv) {
-    console.log(argv)
     const standardVersion = require('standard-version');
     standardVersion({
       infile: argv._[1] || path.resolve(process.cwd(), 'doc/CHANGELOG.md'),
