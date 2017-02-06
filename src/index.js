@@ -193,7 +193,8 @@ const argv = require('yargs')
     standardVersion({
       infile: argv._[1] || path.resolve(process.cwd(), 'doc/CHANGELOG.md'),
       message: 'chore(release): prepare release %s',
-      firstRelease: argv.firstRelease
+      firstRelease: argv.firstRelease,
+      tagPrefix: ""
     }, function (err) {
       process.exit(1);
     });
