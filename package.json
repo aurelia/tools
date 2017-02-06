@@ -18,7 +18,7 @@
     "url": "http://github.com/aurelia/tools"
   },
   "bin": {
-    "aurelia-tools": "src/index.js"
+    "aurelia-tools": "src/cli.js"
   },
   "dependencies": {
     "breeze-dag": "^0.1.0",
