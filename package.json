@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "breeze-dag": "^0.1.0",
+    "rimraf": "^2.5.4",
     "standard-version": "^4.0.0",
     "through2": "^2.0.0",
     "typedoc": "^0.5.1",
