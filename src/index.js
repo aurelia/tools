@@ -1,3 +1,4 @@
+"use strict";
 const doc = require('./doc');
 const dev = require('./dev');
 const build = require('./build');
@@ -17,4 +18,3 @@ module.exports = {
   docShapeDefs: docShapeDefs.shapeDefs,
   docShape: docShape.shape
 };
-
