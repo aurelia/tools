@@ -108,7 +108,7 @@ const argv = require('yargs')
     try {
       const packageName = require(packageJsonPath).name;
       rimraf('dist/doc-temp/**');
-      const tsc = spawn( './node_modules/.bin/tsc', [ '--project', argv.project, '--outFile', path.join(argv.outDir, packageName + '.js') ] );
+      const tsc = spawn( 'node', [ './node_modules/typescript/bin/tsc', '--project', argv.project, '--outFile', path.join(argv.outDir, packageName + '.js') ] );
       proxySpawned(tsc, undefined, argv.continueWhenFailed);
     } catch (e) {
       console.error(e.message);
