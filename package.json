@@ -17,8 +17,19 @@
     "type": "git",
     "url": "http://github.com/aurelia/tools"
   },
+  "bin": {
+    "aurelia-tools": "src/cli.js"
+  },
   "dependencies": {
     "breeze-dag": "^0.1.0",
-    "through2": "^2.0.0"
+    "rimraf": "^2.5.4",
+    "standard-version": "^4.0.0",
+    "through2": "^2.0.0",
+    "typedoc": "^0.5.1",
+    "yargs": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.46",
+    "@types/yargs": "^6.3.1"
   }
 }

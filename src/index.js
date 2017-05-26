@@ -1,6 +1,10 @@
-var doc = require('./doc');
-var dev = require('./dev');
-var build = require('./build');
+"use strict";
+const doc = require('./doc');
+const dev = require('./dev');
+const build = require('./build');
+const docShape = require('./doc-shape');
+const docShapeDefs = require('./doc-shape-defs');
+
 
 module.exports = {
   transformAPIModel:doc.transformAPIModel,
@@ -10,5 +14,7 @@ module.exports = {
   extractImports:build.extractImports,
   createImportBlock:build.createImportBlock,
   sortFiles:build.sortFiles,
-  cleanGeneratedCode: build.cleanGeneratedCode
+  cleanGeneratedCode: build.cleanGeneratedCode,
+  docShapeDefs: docShapeDefs.shapeDefs,
+  docShape: docShape.shape
 };
