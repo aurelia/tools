@@ -20,5 +20,9 @@
   "dependencies": {
     "breeze-dag": "^0.1.0",
     "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "eslint": "^4.0.0"
   }
 }
