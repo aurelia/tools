@@ -114,6 +114,7 @@
     "no-self-compare": 2,            // http://eslint.org/docs/rules/no-self-compare
     "no-sequences": 2,               // http://eslint.org/docs/rules/no-sequences
     "no-throw-literal": 2,           // http://eslint.org/docs/rules/no-throw-literal
+    "no-undef": 2,                   // http://eslint.org/docs/rules/no-undef
     "no-with": 2,                    // http://eslint.org/docs/rules/no-with
     "radix": 2,                      // http://eslint.org/docs/rules/radix
     "vars-on-top": 2,                // http://eslint.org/docs/rules/vars-on-top
